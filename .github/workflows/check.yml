@@ -48,4 +48,5 @@ jobs:
           && git add chart.html
           && git commit -m "Update chart: $(date)"
           && git push origin gh-pages
+          && echo "Visit page: https://msobolak.github.io/algo_bot/"
           
