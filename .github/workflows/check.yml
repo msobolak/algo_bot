@@ -41,6 +41,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
           cd algo_bot
+          && git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          && cat .git/config
           && git add chart.html
           && git commit -m "Update chart: $(date)"
           && git push origin gh-pages
