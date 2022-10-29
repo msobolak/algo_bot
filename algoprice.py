@@ -8,6 +8,7 @@ asset1name = os.environ["ASSET1"]
 asset2name = os.environ["ASSET2"]
 asset1price = ""
 asset2price = ""
+notify = True
 
 with open(datafile, "r") as fd:
     data = json.load(fd)
@@ -32,13 +33,15 @@ if diff > 30:
 elif diff < 21:
     message = f"BANK/ALGO < 21.0 BUY ALGOS! price {diff}"
 else:
-    message = f"BANK/ALGO = {diff} Nothing to do."
+    print(f"BANK/ALGO = {diff} Nothing to do.")
+    run = False
 
-url = os.environ['SLACK_URL']
-headers = {'Content-Type': "application/json"}
-slack_data = {"text": message}
-res = requests.post(url, data=json.dumps(slack_data), headers=headers)
+if run:
+    url = os.environ['SLACK_URL']
+    headers = {'Content-Type': "application/json"}
+    slack_data = {"text": message}
+    res = requests.post(url, data=json.dumps(slack_data), headers=headers)
 
-if res.status_code != 200:
-    raise Exception(res.status_code, res.text)
+    if res.status_code != 200:
+        raise Exception(res.status_code, res.text)
     
