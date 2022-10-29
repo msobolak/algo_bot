@@ -31,7 +31,7 @@ jobs:
           ls -la
       - name: create github pages
         env:
-          GH_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
           gh repo clone msobolak/algo_bot
           && cd algo_bot
