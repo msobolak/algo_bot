@@ -62,7 +62,7 @@ with open('algo_bot/chart.html', 'r') as fd:
 
 for line_ in data:
     if "// Marker" in line_:
-        index_ = data.index(line)
+        index_ = data.index(line_)
 
 data.insert(index_ - 1, entry)
 
