@@ -67,7 +67,9 @@ for line_ in data:
 data.insert(index_ - 1, entry)
 
 with open('algo_bot/chart.html', "w") as fd:
-    fd.write(data)
+    for line_ in data:
+        fd.write(f"{line_}\n")
+
         
 
 
