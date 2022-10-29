@@ -55,13 +55,13 @@ if run:
 entry = f"[{now}, {asset2price}, {asset1price}, {count_}],"
 
 if not os.path.exists('algo_bot/chart.html'):
-    shutil.copy('pages/template.html', 'algo_bot/chart.html')
+    shutil.copy('page/template.html', 'algo_bot/chart.html')
 
 with open('algo_bot/chart.html', 'r') as fd:
     data = fd.readlines()
 
 for line_ in data:
-    if line == "// Marker":
+    if "// Marker" in line_:
         index_ = data.index(line)
 
 data.insert(index_ - 1, entry)
