@@ -13,9 +13,9 @@ with open(datafile, "r") as fd:
 
 for asset_ in data:
   if asset_['name'] == asset1name:
-      asset1price = float(asset_['price']))
+      asset1price = float(asset_['price'])
   if asset_['name'] == asset2name:
-      asset2price = float(asset_['price']))
+      asset2price = float(asset_['price'])
 
 if no asset1price:
     raise IOError(f"Cannot find price of {asset1name}.")
