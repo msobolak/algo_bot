@@ -68,10 +68,8 @@ data.insert(index_, entry)
 
 with open('algo_bot/index.html', "w") as fd:
     for line_ in data:
-        line_ = line_.split()
         line_ = "".join(line_)
-        print(line_)
-        fd.write(line_ + "\n")
+        fd.write(line_)
 
         
 
