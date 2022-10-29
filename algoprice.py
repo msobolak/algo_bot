@@ -54,7 +54,7 @@ if run:
 # Page Update
 entry = f"[{now}, {asset2price}, {asset1price}, {count_}],"
 
-if not os.path.exists('algo_bot/chart.html'):
+if not os.path.exists('algo_bot/index.html'):
     shutil.copy('page/template.html', 'algo_bot/index.html')
 
 with open('algo_bot/index.html', 'r') as fd:
@@ -69,7 +69,8 @@ data.insert(index_ - 1, entry)
 
 with open('algo_bot/chart.html', "w") as fd:
     for line_ in data:
-        fd.write(f"{line_}")
+        line_ = line_.split()
+        fd.write(f"{line_}\n")
 
         
 
