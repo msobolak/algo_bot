@@ -29,6 +29,7 @@ diff = round(asset2price / asset1price, 4)
 headers = {'Content-type': 'application/json'}
 
 url = os.environ['SLACK_WEBHOOK_URL']
+print(f"URL: {url}")
 if diff > 30:
     data = {"text":f"BANK/ALGO > 30.0 SELL ALGOS! price: {diff}"}
     res = requests.post(url, data=data, headers=headers)
