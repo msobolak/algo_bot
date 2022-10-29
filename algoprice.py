@@ -26,19 +26,19 @@ if not asset2price:
 
 diff = round(asset2price / asset1price, 4)
 
-headers = {'Content-type': 'application/json'}
+# Notifycation
+if diff > 30:
+    message = f"BANK/ALGO > 30.0 SELL ALGOS! price: {diff}"
+elif diff < 21:
+    message = f"BANK/ALGO < 21.0 BUY ALGOS! price {diff}"
+else:
+    message = f"BANK/ALGO = {diff} Nothing to do."
 
 url = os.environ['SLACK_URL']
-print(f"URL: {url}")
-if diff > 30:
-    data = {"text":f"BANK/ALGO > 30.0 SELL ALGOS! price: {diff}"}
-    res = requests.post(url, data=data, headers=headers)
-elif diff < 21:
-    data = {"text":f"BANK/ALGO < 21.0 BUY ALGOS! price {diff}"}
-    res = requests.post(url, data=data, headers=headers)
-else:
-    data = {"text":f"BANK/ALGO = {diff} Nothing to do."}
-    res = requests.post(url, data=data, headers=headers)
+headers = {'Content-Type': "application/json"}
+slack_data = {"text": message}
+res = requests.post(url, data=json.dumps(slack_data), headers=headers)
 
-print(res)
+if res.status_code != 200:
+    raise Exception(res.status_code, res.text)
     
