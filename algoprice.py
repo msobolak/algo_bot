@@ -59,6 +59,7 @@ if not os.path.exists('algo_bot/chart.html'):
 
 with open('algo_bot/chart.html', 'r') as fd:
     data = fd.readlines()
+print(data)
 
 for line_ in data:
     if "// Marker" in line_:
@@ -68,6 +69,7 @@ data.insert(index_ - 1, entry)
 
 with open('algo_bot/chart.html', "w") as fd:
     for line_ in data:
+        line_ = line_.strip()
         fd.write(f"{line_}\n")
 
         
