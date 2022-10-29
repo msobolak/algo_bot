@@ -53,6 +53,10 @@ if run:
 
 # Page Update
 entry = f"[{now}, {asset2price}, {asset1price}, {count_}],"
+
+if not os.path.exists('algo_bot/chart.html'):
+    shutil.copy('pages/template.html', 'algo_bot/chart.html')
+
 with open('algo_bot/chart.html', 'r') as fd:
     data = fd.readlines()
 
