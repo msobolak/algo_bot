@@ -44,7 +44,6 @@ jobs:
           && git config --global user.email "msobo@gmail.com"
           && git config --global user.name "msobo"
           && git remote set-url origin https://x-access-token:${{ secrets.PUSH_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          && cat .git/config
           && git add chart.html
           && git commit -m "Update chart: $(date)"
           && git push origin gh-pages
