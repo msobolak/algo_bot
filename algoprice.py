@@ -59,7 +59,6 @@ if not os.path.exists('algo_bot/index.html'):
 
 with open('algo_bot/index.html', 'r') as fd:
     data = fd.readlines()
-print(data)
 
 for line_ in data:
     if "// Marker" in line_:
@@ -67,8 +66,9 @@ for line_ in data:
 
 data.insert(index_ - 1, entry)
 
-with open('algo_bot/chart.html', "w") as fd:
+with open('algo_bot/index.html', "w") as fd:
     for line_ in data:
+        print(line_)
         line_ = line_.split()
         fd.write(f"{line_}\n")
 
