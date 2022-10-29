@@ -41,7 +41,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
           cd algo_bot
-          && gh repo add chart.html
-          && gh repo commit -m "Update chart: $(date)"
-          && gh repo push origin gh-pages
+          && git add chart.html
+          && git commit -m "Update chart: $(date)"
+          && git push origin gh-pages
           
