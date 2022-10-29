@@ -9,11 +9,16 @@ jobs:
   check-price:
     runs-on: ubuntu-latest
     env:
-      ASSET1: "ALGO"
-      ASSET2: "BANK"
+      ASSET1: "BANK"
+      ASSET2: "ALGO"
 
     steps:
-      - name: get asset info
+      - name: Setup Python
+        uses: actions/setup-python@v4.3.0
+        with:
+          python-version: '3.10'
+      - name: Get asset data file
         run: curl https://api.algofi.org/assets | jq > assets.as
-      - name: find asset1 price
-        run: python
+      - name: Notify
+        run: |
+          echo "PRICE: $(python3 algoprice.py assets.as)"
