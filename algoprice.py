@@ -8,7 +8,7 @@ import re
 from datetime import datetime
 
 get_date = datetime.now()
-now = get_date.strftime("%Y-%m-%d %H.%M")
+now = get_date.strftime("%Y-%m-%d %H:%M")
 datafile = sys.argv[1]
 asset1name = os.environ["ASSET1"]
 asset2name = os.environ["ASSET2"]
@@ -52,7 +52,7 @@ if run:
         raise Exception(res.status_code, res.text)
 
 # Page Update
-entry = f"[{now}, {asset2price}, {asset1price}, {count_}],\n"
+entry = f"['{now}', {asset2price}, {asset1price}, {count_}],\n"
 
 if not os.path.exists('algo_bot/index.html'):
     shutil.copy('page/template.html', 'algo_bot/index.html')
