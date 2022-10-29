@@ -1,0 +1,19 @@
+name: Check price and notify
+
+on:
+#   schedule:
+#     - crone: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  check-price:
+    runs-on: ubuntu-latest
+    env:
+      ASSET1: "ALGO"
+      ASSET2: "BANK"
+
+    steps:
+      - name: get asset info
+        run: curl https://api.algofi.org/assets | jq > assets.as
+      - name: find asset1 price
+        run: python
