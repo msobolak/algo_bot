@@ -26,6 +26,6 @@ jobs:
         run: curl https://api.algofi.org/assets | jq > assets.as
       - name: Notify
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           echo "PRICE: $(python3 ./algoprice.py assets.as)"
