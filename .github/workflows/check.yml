@@ -38,11 +38,11 @@ jobs:
           echo "PRICE: $(python3 ./algoprice.py assets.as)"
       - name: Update github pages
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PUSH_TOKEN }}
         run: >
           cd algo_bot
-          && git config --global user.email "msobo@gmail.com"
-          && git config --global user.name "msobo"
+          && git config --global user.email "marek.sobolak@gmail.com"
+          && git config --global user.name "msobolak"
           && git remote set-url origin https://x-access-token:${{ secrets.PUSH_TOKEN }}@github.com/$GITHUB_REPOSITORY
           && git add index.html
           && git commit -m "Update chart: $(date)"
