@@ -64,7 +64,7 @@ for line_ in data:
     if "// Marker" in line_:
         index_ = data.index(line_)
 
-data.insert(index_ - 1, entry)
+data.insert(index_, entry)
 
 with open('algo_bot/index.html', "w") as fd:
     for line_ in data:
