@@ -30,9 +30,10 @@ headers = {'Content-type': 'application/json'}
 
 url = os.environ['SLACK_WEBHOOK_URL']
 if diff > 30:
-    data = '{"text":"BANK/ALGO > 30.0 SELL ALGOS!"}
+    data = {"text":"BANK/ALGO > 30.0 SELL ALGOS!"}
     res = requests.post(url, data=data, headers=headers)
 elif diff < 21:
-    data = '{"text":"BANK/ALGO < 21.0 BUY ALGOS!"}
+    data = {"text":"BANK/ALGO < 21.0 BUY ALGOS!"}
     res = requests.post(url, data=data, headers=headers)
+
 print(res)
