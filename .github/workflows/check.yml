@@ -23,21 +23,25 @@ jobs:
         run: pip install requests
       - name: Get asset data file
         run: curl https://api.algofi.org/assets | jq > assets.as
-      - name: Notify
-        env:
-          SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: |
-          echo "PRICE: $(python3 ./algoprice.py assets.as)"
-          ls -la
-      - name: create github pages
+      - name: get chart.html file
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
           gh repo clone msobolak/algo_bot
           && cd algo_bot
           && git checkout gh-pages
-          && cp ../chart.html .
+          && ls -la && cd -
+      - name: Notify
+        env:
+          SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "PRICE: $(python3 ./algoprice.py assets.as)"
+      - name: update github pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          cd algo_bot
           && gh repo add chart.html
-          && gh repo commit -m "Update $(date)"
+          && gh repo commit -m "Update chart: $(date)"
           && gh repo push origin gh-pages
           
