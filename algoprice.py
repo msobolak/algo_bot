@@ -23,4 +23,4 @@ if not asset1price:
 if not asset2price:
     raise IOError(f"Cannot find price of {asset2name}.")
 
-print(asset2price / asset1price)
+print(round(asset2price / asset1price, 4))
