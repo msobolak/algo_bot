@@ -53,8 +53,7 @@ if run:
 
 # Page Update
 entry = f"[{now}, {asset2price}, {asset1price}, {count_}],"
-shutil.copy('page/template.html', 'tmp_/template.html')
-with open('tmp_/template.html', 'r') as fd:
+with open('algo_bot/chart.html', 'r') as fd:
     data = fd.readlines()
 
 for line_ in data:
@@ -63,7 +62,7 @@ for line_ in data:
 
 data.insert(index_ - 1, entry)
 
-with open('chart.html', "w") as fd:
+with open('algo_bot/chart.html', "w") as fd:
     fd.write(data)
         
 
