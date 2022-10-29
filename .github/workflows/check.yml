@@ -1,8 +1,8 @@
 name: Check price and notify
 
 on:
-#   schedule:
-#     - crone: "*/30 * * * *"
+  schedule:
+    - cron: "0 * * * *"
   workflow_dispatch:
   push:
 
