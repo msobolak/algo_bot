@@ -23,20 +23,20 @@ jobs:
         run: pip install requests
       - name: Get asset data file
         run: curl https://api.algofi.org/assets | jq > assets.as
-      - name: get chart.html file
+      - name: Get chart.html file
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
           gh repo clone msobolak/algo_bot
           && cd algo_bot
           && git checkout gh-pages
-          && ls -la && cd -
-      - name: Notify
+          && cd -
+      - name: Compare prices - Notify - Create index.html
         env:
           SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           echo "PRICE: $(python3 ./algoprice.py assets.as)"
-      - name: update github pages
+      - name: Update github pages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
@@ -44,7 +44,7 @@ jobs:
           && git config --global user.email "msobo@gmail.com"
           && git config --global user.name "msobo"
           && git remote set-url origin https://x-access-token:${{ secrets.PUSH_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          && git add chart.html
+          && git add index.html
           && git commit -m "Update chart: $(date)"
           && git push origin gh-pages
           && echo "Visit page: https://msobolak.github.io/algo_bot/"
