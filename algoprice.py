@@ -2,7 +2,13 @@ import json
 import sys
 import os
 import requests
+import shutil
+import re
 
+from datetime import datetime
+
+get_date = datetime.now()
+now = get_date.strftime("%Y-%m-%d %H:%M")
 datafile = sys.argv[1]
 asset1name = os.environ["ASSET1"]
 asset2name = os.environ["ASSET2"]
@@ -25,15 +31,15 @@ if not asset1price:
 if not asset2price:
     raise IOError(f"Cannot find price of {asset2name}.")
 
-diff = round(asset2price / asset1price, 4)
+count_ = round(asset2price / asset1price, 4)
 
-# Notifycation
-if diff > 30:
-    message = f"BANK/ALGO > 30.0 SELL ALGOS! price: {diff}"
-elif diff < 21:
-    message = f"BANK/ALGO < 21.0 BUY ALGOS! price {diff}"
+# Notification
+if count_ > 30:
+    message = f"BANK/ALGO > 30.0 SELL ALGOS! price: {count_}"
+elif count_ < 21:
+    message = f"BANK/ALGO < 21.0 BUY ALGOS! price {count_}"
 else:
-    print(f"BANK/ALGO = {diff} Nothing to do.")
+    print(f"BANK/ALGO = {count_} Nothing to do.")
     run = False
 
 if run:
@@ -44,4 +50,22 @@ if run:
 
     if res.status_code != 200:
         raise Exception(res.status_code, res.text)
-    
+
+# Page Update
+entry = f"[{now}, {asset2price}, {asset1price}, {count_}],"
+shutil.copy('page/template.html', 'tmp_/template.html')
+with open('tmp_/template.html', 'r') as fd:
+    data = fd.readlines()
+
+for line_ in data:
+    if line == "// Marker"
+        index_ = data.index(line)
+
+data.insert(index_ - 1, entry)
+
+with open('chart.html', "w") as fd:
+    fd.write(data)
+        
+
+
+
