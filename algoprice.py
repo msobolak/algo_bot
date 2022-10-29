@@ -17,10 +17,10 @@ for asset_ in data:
   if asset_['name'] == asset2name:
       asset2price = float(asset_['price'])
 
-if no asset1price:
+if not asset1price:
     raise IOError(f"Cannot find price of {asset1name}.")
 
-if no asset2price:
+if not asset2price:
     raise IOError(f"Cannot find price of {asset2name}.")
 
 print(asset2price / asset1price)
