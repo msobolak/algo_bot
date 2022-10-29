@@ -58,7 +58,7 @@ with open('tmp_/template.html', 'r') as fd:
     data = fd.readlines()
 
 for line_ in data:
-    if line == "// Marker"
+    if line == "// Marker":
         index_ = data.index(line)
 
 data.insert(index_ - 1, entry)
