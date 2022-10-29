@@ -21,4 +21,5 @@ jobs:
         run: curl https://api.algofi.org/assets | jq > assets.as
       - name: Notify
         run: |
-          echo "PRICE: $(python3 algoprice.py assets.as)"
+          ls -la
+          echo "PRICE: $(python3 ./algoprice.py assets.as)"
