@@ -1,6 +1,7 @@
 import json
 import sys
 import os
+import requests
 
 datafile = sys.argv[1]
 asset1name = os.environ["ASSET1"]
@@ -23,4 +24,15 @@ if not asset1price:
 if not asset2price:
     raise IOError(f"Cannot find price of {asset2name}.")
 
-print(round(asset2price / asset1price, 4))
+diff = round(asset2price / asset1price, 4)
+
+headers = {'Content-type': 'application/json'}
+
+url = os.environ['SLACK_WEBHOOK_URL']
+if diff > 30:
+    data = '{"text":"BANK/ALGO > 30.0 SELL ALGOS!"}
+    res = requests.post(url, data=data, headers=headers)
+elif diff < 21:
+    data = '{"text":"BANK/ALGO < 21.0 BUY ALGOS!"}
+    res = requests.post(url, data=data, headers=headers)
+print(res)
