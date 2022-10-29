@@ -8,7 +8,7 @@ import re
 from datetime import datetime
 
 get_date = datetime.now()
-now = get_date.strftime("%Y-%m-%d %H:%M")
+now = get_date.strftime("%Y-%m-%d %H.%M")
 datafile = sys.argv[1]
 asset1name = os.environ["ASSET1"]
 asset2name = os.environ["ASSET2"]
