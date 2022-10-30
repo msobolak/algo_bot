@@ -52,7 +52,7 @@ if run:
         raise Exception(res.status_code, res.text)
 
 # Page Update
-entry = f"['{now}', {asset2price}, {asset1price}, {count_}],\n"
+
 
 if not os.path.exists('algo_bot/index.html'):
     shutil.copy('page/template.html', 'algo_bot/index.html')
@@ -60,11 +60,20 @@ if not os.path.exists('algo_bot/index.html'):
 with open('algo_bot/index.html', 'r') as fd:
     data = fd.readlines()
 
+entry = f"['{now}', {count_}],\n"
 for line_ in data:
-    if "// Marker" in line_:
+    if "// Marker1" in line_:
         index_ = data.index(line_)
 
 data.insert(index_, entry)
+
+entry = f"['{now}', {asset2price}, {asset1price}],\n" 
+for line_ in data:
+    if "// Marker2" in line_:
+        index_ = data.index(line_)
+
+data.insert(index_, entry)
+
 
 with open('algo_bot/index.html', "w") as fd:
     for line_ in data:
