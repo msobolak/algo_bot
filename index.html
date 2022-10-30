@@ -4,34 +4,52 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2)
 
-      function drawChart() {
+      function drawChart1() {
         var data = google.visualization.arrayToDataTable([
-          ['Date', 'Algo', 'BANK', 'AlgoBANK'],
-['2022-10-29 22:33', 0.339766, 0.0148083, 22.9443],
-['2022-10-29 22:37', 0.339181, 0.0147829, 22.9441],
-['2022-10-29 22:49', 0.338221, 0.014741, 22.9442],
-['2022-10-29 23:22', 0.337314, 0.0142082, 23.7408],
-['2022-10-30 02:07', 0.337968, 0.0149652, 22.5836],
-['2022-10-30 04:08', 0.338947, 0.0142534, 23.7801],
-['2022-10-30 05:25', 0.339849, 0.0142755, 23.8065],
-['2022-10-30 06:24', 0.341297, 0.0141624, 24.0988],
-['2022-10-30 07:17', 0.342453, 0.0142828, 23.9766],
-// Marker
+          ['Date', 'AlgoBANK'],
+['2022-10-29 22:33', 22.9443],
+['2022-10-29 22:37', 22.9441],
+['2022-10-29 22:49', 22.9442],
+// Marker1
         ]);
         var options = {
-          title: 'Company Performance',
+          title: 'Performance',
           curveType: 'function',
-          legend: { position: 'bottom' }
+          legend: { position: 'bottom' },
+          width:1200,
+          height: 500
         };
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_algo_bank_1'));
+
+        chart.draw(data, options);
+      }
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Algo', 'BANK'],
+['2022-10-29 22:33', 0.339766, 0.0148083],
+['2022-10-29 22:37', 0.339181, 0.0147829],
+['2022-10-29 22:49', 0.338221, 0.014741],
+// Marker2
+        ]);
+        var options = {
+          title: 'Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+          width:1200,
+          height: 500
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_algo_bank_2'));
 
         chart.draw(data, options);
       }
     </script>
   </head>
   <body>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <div id="curve_chart_algo_bank_1" style="border: 1px; solid #ccc"></div>
+    <div id="curve_chart_algo_bank_2" style="border: 1px; solid #ccc"></div>
   </body>
 </html>
+
