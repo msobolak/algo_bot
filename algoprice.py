@@ -36,8 +36,10 @@ count_ = round(asset2price / asset1price, 4)
 # Notification
 if count_ > 30:
     message = f"BANK/ALGO > 30.0 SELL ALGOS! price: {count_}"
+    run = True
 elif count_ < 21:
     message = f"BANK/ALGO < 21.0 BUY ALGOS! price {count_}"
+    run = True
 else:
     print(f"BANK/ALGO = {count_} Nothing to do.")
     run = False
@@ -52,8 +54,6 @@ if run:
         raise Exception(res.status_code, res.text)
 
 # Page Update
-
-
 if not os.path.exists('algo_bot/index.html'):
     shutil.copy('page/template.html', 'algo_bot/index.html')
 
