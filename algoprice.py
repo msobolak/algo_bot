@@ -35,10 +35,10 @@ count_ = round(asset2price / asset1price, 4)
 
 # Notification
 if count_ > 30:
-    message = f"BANK/ALGO > 30.0 SELL ALGOS! price: {count_}"
+    message = f"BANK/ALGO > 35.0 SELL ALGOS! price: {count_}"
     run = True
 elif count_ < 21:
-    message = f"BANK/ALGO < 21.0 BUY ALGOS! price {count_}"
+    message = f"BANK/ALGO < 22.0 BUY ALGOS! price {count_}"
     run = True
 else:
     print(f"BANK/ALGO = {count_} Nothing to do.")
