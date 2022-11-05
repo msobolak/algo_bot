@@ -16,7 +16,7 @@ asset1price = ""
 asset2price = ""
 notify = True
 top_price = 35.0
-bottom_price = 24.0
+bottom_price = 29.2
 
 with open(datafile, "r") as fd:
     data = json.load(fd)
