@@ -15,6 +15,8 @@ asset2name = os.environ["ASSET2"]
 asset1price = ""
 asset2price = ""
 notify = True
+top_price = 35.0
+bottom_price = 22.0
 
 with open(datafile, "r") as fd:
     data = json.load(fd)
@@ -34,11 +36,11 @@ if not asset2price:
 count_ = round(asset2price / asset1price, 4)
 
 # Notification
-if count_ > 30:
-    message = f"BANK/ALGO > 35.0 SELL ALGOS! price: {count_}"
+if count_ > top_price:
+    message = f"BANK/ALGO > {top_price} SELL ALGOS! price: {count_}"
     run = True
-elif count_ < 21:
-    message = f"BANK/ALGO < 22.0 BUY ALGOS! price {count_}"
+elif count_ < bottom_price:
+    message = f"BANK/ALGO < {bottom_price} BUY ALGOS! price {count_}"
     run = True
 else:
     print(f"BANK/ALGO = {count_} Nothing to do.")
