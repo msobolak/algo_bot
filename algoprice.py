@@ -15,8 +15,8 @@ asset2name = os.environ["ASSET2"]
 asset1price = ""
 asset2price = ""
 notify = True
-top_price = 33.0
-bottom_price = 24.5
+top_price = 32.0
+bottom_price = 20.0
 
 with open(datafile, "r") as fd:
     data = json.load(fd)
